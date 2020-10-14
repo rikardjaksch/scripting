@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 typedef enum token_type_e {
 	TOKEN_TYPE_END_OF_STREAM,
 	TOKEN_TYPE_OPEN_PAREN,
@@ -22,9 +24,9 @@ typedef struct token_t {
 	char lexeme[MAX_TOKEN_LEXEME_LENGTH];
 	unsigned lexeme_length;
 
-	unsigned position;
-	unsigned line_position;
-	unsigned line_number;
+	size_t position;
+	size_t line_position;
+	size_t line_number;
 } token_t;
 
 void token_initialize(token_t* token);

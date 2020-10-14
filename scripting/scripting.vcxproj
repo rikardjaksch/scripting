@@ -143,11 +143,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ast.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="parser.c" />
     <ClCompile Include="token.c" />
     <ClCompile Include="tokenizer.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="array.h" />
+    <ClInclude Include="ast.h" />
+    <ClInclude Include="parser.h" />
     <ClInclude Include="token.h" />
     <ClInclude Include="tokenizer.h" />
   </ItemGroup>

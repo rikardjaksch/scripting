@@ -1,18 +1,21 @@
 #include "token.h"
 #include "tokenizer.h"
+#include "parser.h"
+#include "ast.h"
 
 int main() {
-	tokenizer_t lexer = { 0 };
-	const char* source_code = "( [10, 20, 'hejsan'] )";
+    tokenizer_t lexer = { 0 };
+	//const char* source_code = "( [10, 20, 'hejsan'] )";
+    const char* source_code = "test = 'hejsan'";
 
 	tokenizer_initialize(&lexer, source_code);
 
-	// Lex all tokens until we run in to end of stream
-	token_t token = { 0 };
-	while (tokenizer_has_next(&lexer)) {
-		tokenizer_next(&lexer, &token);
-		token_print(&token);
-	}
+    parser_t parser = { 0 };
+    parser_initialize(&parser, &lexer);
+
+    ast_node_t* root = parser_parse(&parser);
+	
+    // TODO: Free up parser, if needed, and all allocated ast-nodes
 
 	// Free up lexer
 	tokenizer_destruct(&lexer);
@@ -50,14 +53,14 @@ typedef struct value_object_t {
 
 
 program             := expression_list
-expression_list     := '(' expression* ')'
 
+expression_list     := '(' (expression (',' expression)*)? ')'
 param_list          := '(' (param_value (',' param_value)*)? ')'
 value_list          := '(' (value (',' value)*)? ')'
 
 value_declaration   := identifier '=' value
-func_declaration    := '(' param_list ')' '->' expression_list
-function_call       := identifier '(' (value (',' value)*)? ')'
+function_call       := identifier value_list
+func_declaration    := param_list '->' expression_list
 
 identifier          := (character | '_') (character | digit | '_')*
 
@@ -77,20 +80,17 @@ param_value         :=  number_literal
                     |   function_call
                     |   identifier
 
-expression          :=  value_declaration ';'
-                    |   function_call ';'
-                    |   func_declaration ';'
+expression          :=  value_declaration
+                    |   function_call
 
 
 list_value          := '[' (value (',' value)*)? ']'
 
 
 (
-    foo = (nil, b, c) -> (
-        add([a, b, c])
-    ),
-    
-    (10)
+    foo = 10,
+    foo,
+    bar(x)
 )
 
 

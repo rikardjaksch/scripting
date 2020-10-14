@@ -44,7 +44,7 @@ const char* token_type_name(token_type_e type) {
 }
 
 void token_print(token_t* token) {
-	printf("(%d, %d) %s - %s\n", token->line_position, token->line_number, token_type_name(token->type), token->lexeme);
+	printf("(%Iu, %Iu) %s - %s\n", token->line_position, token->line_number, token_type_name(token->type), token->lexeme);
 }
 
 void token_append_character(token_t* token, char c) {
