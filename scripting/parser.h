@@ -8,7 +8,8 @@ typedef struct ast_node_t ast_node_t;
 
 typedef struct parser_t {
 	tokenizer_t* tokenizer;
-	token_t current_token;
+	token_t current;
+	token_t next;
 } parser_t;
 
 

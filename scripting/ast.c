@@ -43,6 +43,15 @@ ast_node_t* ast_create_list_value() {
 	return node;
 }
 
+ast_node_t* ast_create_expression_list() {
+	ast_node_t* node = create_new_node(AST_TYPE_EXPRESSION_LIST);
+
+	node->expr_list.expressions = 0;
+	node->expr_list.num_expressions = 0;
+
+	return node;
+}
+
 ast_node_t* ast_create_identifier(const char* symbol) {
 	ast_node_t* node = create_new_node(AST_TYPE_IDENTIFIER);
 

@@ -6,7 +6,11 @@
 int main() {
     tokenizer_t lexer = { 0 };
 	//const char* source_code = "( [10, 20, 'hejsan'] )";
-    const char* source_code = "test = 'hejsan'";
+    const char* source_code = \
+        "(" \
+        "   foo = ['hej']," \
+        "   bar = x" \
+        ")";
 
 	tokenizer_initialize(&lexer, source_code);
 
@@ -26,41 +30,17 @@ int main() {
 
 /*
 
-typedef enum value_object_type_e {
-    VALUE_TYPE_NUMBER,
-    VALUE_TYPE_STRING,
-    VALUE_TYPE_LIST,
-    VALUE_TYPE_DICT,
-    VALUE_TYPE_FUNC,
-    VALUE_TYPE_NIL
-} value_object_type_e;
-
-typedef struct value_object_t {
-    // Type of value this object holds
-    value_object_type_e type;
-    // Number of references to this object
-    uint32_t references;
-
-    union {
-        double number;
-        char* string;
-        struct value_object_t* list;
-        struct hash_map_t* hash;
-        function_ptr* func;
-    };
-} value_object_t;
-
 
 
 program             := expression_list
 
 expression_list     := '(' (expression (',' expression)*)? ')'
-param_list          := '(' (param_value (',' param_value)*)? ')'
+param_list          := '(' (identifier (',' identifier)*)? ')'
 value_list          := '(' (value (',' value)*)? ')'
 
 value_declaration   := identifier '=' value
 function_call       := identifier value_list
-func_declaration    := param_list '->' expression_list
+func_declaration    := param_list '>' expression_list
 
 identifier          := (character | '_') (character | digit | '_')*
 
@@ -68,7 +48,6 @@ value               :=  number_literal
                     |   string_literal
                     |   list_value
                     |   dict_value
-                    |   expression_list
                     |   function_call
                     |   function_decl
                     |   identifier
@@ -85,14 +64,7 @@ expression          :=  value_declaration
 
 
 list_value          := '[' (value (',' value)*)? ']'
-
-
-(
-    foo = 10,
-    foo,
-    bar(x)
-)
-
-
+string_literal      := '\'' .* '\''
+number_literal      := digit+ ('.' digit+)?
 
 */

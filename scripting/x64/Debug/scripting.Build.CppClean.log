@@ -4,8 +4,9 @@ c:\users\rikard\source\repos\scripting\scripting\x64\debug\tokenizer.obj
 c:\users\rikard\source\repos\scripting\scripting\x64\debug\token.obj
 c:\users\rikard\source\repos\scripting\scripting\x64\debug\main.obj
 c:\users\rikard\source\repos\scripting\scripting\x64\debug\ast.obj
-c:\users\rikard\source\repos\scripting\x64\debug\scripting.ilk
+c:\users\rikard\source\repos\scripting\scripting\x64\debug\parser.obj
 c:\users\rikard\source\repos\scripting\x64\debug\scripting.exe
+c:\users\rikard\source\repos\scripting\x64\debug\scripting.ilk
 c:\users\rikard\source\repos\scripting\x64\debug\scripting.pdb
 c:\users\rikard\source\repos\scripting\scripting\x64\debug\scripting.tlog\cl.command.1.tlog
 c:\users\rikard\source\repos\scripting\scripting\x64\debug\scripting.tlog\cl.read.1.tlog

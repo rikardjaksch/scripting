@@ -1,2 +1,7 @@
-﻿  parser.c
+﻿  ast.c
+  main.c
+  parser.c
+  token.c
+  tokenizer.c
+  Generating Code...
   scripting.vcxproj -> C:\Users\Rikard\source\repos\scripting\x64\Debug\scripting.exe

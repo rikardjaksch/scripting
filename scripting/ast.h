@@ -29,6 +29,11 @@ typedef struct ast_node_func_call_t {
 	ast_node_t** params;
 } ast_node_func_call_t;
 
+typedef struct ast_node_expr_list_t {
+	ast_node_t** expressions;
+	unsigned num_expressions;
+} ast_node_expr_list_t;
+
 typedef struct ast_node_t {
 	enum {
 		AST_TYPE_STRING_LITERAL,
@@ -36,7 +41,8 @@ typedef struct ast_node_t {
 		AST_TYPE_LIST_VALUE,
 		AST_TYPE_VALUE_DECL,
 		AST_TYPE_FUNC_CALL,
-		AST_TYPE_IDENTIFIER
+		AST_TYPE_IDENTIFIER,
+		AST_TYPE_EXPRESSION_LIST
 	} type;
 
 	union {
@@ -46,12 +52,14 @@ typedef struct ast_node_t {
 		ast_node_value_decl_t value_decl;
 		ast_node_func_call_t func_call;
 		ast_node_identifier_t identifier;
+		ast_node_expr_list_t expr_list;
 	};
 } ast_node_t;
 
 ast_node_t* ast_create_string_literal(const char* value);
 ast_node_t* ast_create_number_literal(double value);
 ast_node_t* ast_create_list_value();
+ast_node_t* ast_create_expression_list();
 ast_node_t* ast_create_identifier(const char* symbol);
 ast_node_t* ast_create_value_decl();
 ast_node_t* ast_create_func_call();
